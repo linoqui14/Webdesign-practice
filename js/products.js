@@ -1,15 +1,16 @@
  export class Product{
-    constructor(product_name,description,price,image_url,product_id,tag,isDiscounted,discount_value){
+    constructor(product_name,description,price,image_url,product_id,category,isDiscounted,discount_value){
         this.product_name = product_name;
         this.description=description;
         this.price = price;
         this.image_url = image_url;
         this.product_id = product_id;
-        this.tag = tag
+        this.category = category
         this.isDiscounted = isDiscounted;
         this.discount_value = discount_value;
-        this.onProduckClick = function(){}
+        this.onProductClick = function(){}
         this.discountedPrice = 0
+        this.tag = "";
         // this.discount_percentage = discount_percentage;
         // this.discounted_price = price - (price*discount_percentage);
     }
@@ -24,22 +25,21 @@
         var discount = document.createElement("h6");
         var product_description_p = document.createElement("div");
         //set attributesss
-        container.className = "container";
+        container.className = "p_container";
         container.style.width = "200px";
         container.style.marginLeft = "2%";
         container.style.fontFamily = "Questrial";
-        container.style.height = "100px"
+        container.style.height = "80px"
         container.style.marginTop = "5px"
         product_description_p.textContent = this.description;
         product_description_p.style = "color = rgba(0,0,0,50)"
         product_description_p.style.marginBlockStart = 0;
         product_description_p.style.marginBlockEnd = 0;
-        product_description_p.style.width = "360px"
-        product_description_p.style.height = "20px"
         product_description_p.style.fontWeight = "100"
         product_description_p.style.fontSize = "13px"
-        product_description_p.style.wordWrap = " break-word";
-  
+        product_description_p.style.textOverflow = "ellipsis";
+        product_description_p.style.overflow = "hidden";
+        product_description_p.style.whiteSpace = "nowrap"
         card.className = "card";
         card.style.textAlign = "justify"
         image.src = this.image_url;
@@ -53,13 +53,19 @@
         price_text.style = "color:#ff5e00;"
         price_text.style.fontFamily = "Questrial";
         price_text.style.fontWeight = "100"
-        price_text.style.fontSize = "1.5rem"
+        price_text.style.fontSize = "20px"
         price_text.style.marginBlockStart = 0;
         price_text.style.marginBlockEnd = 0;
         price_text.style.marginTop = "0px"
+        price_text.style.paddingTop = "0";
         //adding elements
         product_name_h4.innerText = this.product_name;
         product_name_h4.style.textAlign = "justify"
+        product_name_h4.height = "50px"
+        product_name_h4.style.textOverflow = "ellipsis";
+        product_name_h4.style.overflow = "hidden";
+        product_name_h4.style.whiteSpace = "nowrap"
+
         container.append(product_name_h4);
         container.append(product_description_p);
         container.append(price_text);
@@ -69,7 +75,8 @@
             discount.style.marginBlockStart = 0;
             discount.style.marginBlockEnd = 0;
             discount.style.fontSize = "15px";
-            discount.innerHTML = '<span style="text-decoration-line: line-through;font-weight:150;color:rgba(0,0,0,0.7)">₱ '+this.price.toFixed(2)+'</span>'+' '+(this.discount_value*100).toFixed(2)+'%'
+            discount.innerHTML = '<span style="text-decoration-line: line-through;font-weight:150;color:rgba(0,0,0,0.7)">₱ '+
+            this.price.toFixed(2)+'</span>'+' '+(this.discount_value*100).toFixed(2)+'%'
 
             container.append(discount);
         }
@@ -81,7 +88,7 @@
         card.append(container);
         card.product_id = this.product_id;
         card.onclick = ()=>{
-            this.onProduckClick(this);
+            this.onProductClick(this);
         } 
         return card;
     } 
@@ -189,7 +196,6 @@ export class ProductContainer{
                     product_container.scrollLeft -= 1;
                 }
             }
-            
         },speed);
     }
 }

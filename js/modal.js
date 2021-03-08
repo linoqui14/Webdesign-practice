@@ -24,7 +24,7 @@ export class ProductModal{
         modal_content.className = "modal-content";
         modal_content.style.height="500px"
         modal_content.style.maxHeight="500px"
-        modal_content.style.maxWidth = "800px"
+        modal_content.style.maxWidth = "700px"
         modal_content.style.minHeight="300px"
         modal_content.style.minWidth = "200px"
         modal_content.style.textOverflow = "break-word"
@@ -63,9 +63,22 @@ export class ProductModal{
        
         add_to_cart_btn.innerText = "Add to Cart"
         add_to_cart_btn.style.position = "absolute";
-        add_to_cart_btn.style.bottom = "200px"
+        add_to_cart_btn.style.bottom = "10px"
+        add_to_cart_btn.style.right = "10px"
         add_to_cart_btn.style.width = "200px"
         add_to_cart_btn.style.height = "50px"
+        add_to_cart_btn.style.color = "white"
+        add_to_cart_btn.style.backgroundColor = "#ff5e00"
+        add_to_cart_btn.style.outline = "none"
+        add_to_cart_btn.style.border = "none"
+        add_to_cart_btn.id = "add-cart-btn"
+
+        add_to_cart_btn.addEventListener("mouseover",()=>{
+            add_to_cart_btn.style.backgroundColor = "rgba(82, 82, 82, 0.8)"
+        });
+        add_to_cart_btn.addEventListener("mouseleave",()=>{
+            add_to_cart_btn.style.backgroundColor = "#ff5e00"
+        });
 
 
         description.style.marginTop = "5px"
@@ -75,10 +88,25 @@ export class ProductModal{
         
         description.innerText = this.product.description;
 
-        close_btn.innerText = "Close";
+        close_btn.innerText = "x";
+        close_btn.style.fontSize = "20px"
+        close_btn.style.fontWeight = "bold"
         close_btn.style.position = "absolute"
-        close_btn.style.left = "10px"
-        close_btn.style.bottom = "10px"
+        close_btn.style.right = "10px"
+        close_btn.style.top = "10px"
+        close_btn.style.color = "rgba(82, 82, 82, 0.8)"
+        close_btn.style.backgroundColor = "white"
+        close_btn.style.outline = "none"
+        close_btn.style.border = "none"
+
+        close_btn.addEventListener("mouseleave",()=>{
+            close_btn.style.backgroundColor = "white"
+            close_btn.style.color = "rgba(82, 82, 82, 0.8)"
+        });
+        close_btn.addEventListener("mouseover",()=>{
+            close_btn.style.backgroundColor = "rgba(82, 82, 82, 0.8)"
+            close_btn.style.color = "white"
+        });
         // close_btn.float = "right"
 
         price.innerText =   "₱ "+this.product.discountedPrice.toFixed(2);
@@ -97,7 +125,7 @@ export class ProductModal{
         image.alt = "../image/loading_image.png";
         image.style.minWidth = "20%";
         image.style.minHeight = "50%";
-        image.style.width = "40%";
+        image.style.width = "50%";
         image.style.height = "100%";
 
         image.style.objectFit = "contain"

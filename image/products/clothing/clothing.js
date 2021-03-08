@@ -1,4 +1,4 @@
-export var cloths = [
+export var clothes = [
     {
         "name":"Manzon kids clothing",
         "discription":"Unisex Kids Clothing",

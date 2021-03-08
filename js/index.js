@@ -1,40 +1,66 @@
 import {Product,ProductContainer} from "./products.js";//importing product.js
 import {SearchBar} from "./searchbar.js";
 import {ProductModal} from "./modal.js";
-
-import {cloths} from "../image/products/clothing/clothing.js"
+import {clothes} from "../image/products/clothing/clothing.js"
 import {gadgets} from "../image/products/gadgets/gadgets.js"
-var featureProductList = [];
-var productList = []
-cloths.forEach(value =>{
-  //console.log(value);
-  var product = new Product(value.name,value.discription,value.pice,value.image_url,cloths.indexOf(value),"gadgets",true,Math.random()); // instance of a product
-  //console.log(product.product_name);
-  featureProductList.push(product);//adding this prodcut to the array
+import {personal} from "../image/products/personal/personal.js"
+
+var p_tag = ["featured","discounted","popular"]
+
+var discountedProductList = [];//this will carry the discounted products
+var featuredProductList = [];//this will carry the discounted products
+var popularProductList = [];//this will carry the discounted products
+var productList = []//this will carry all the product
+
+clothes.forEach(value =>{
+  var product = new Product(value.name,value.discription,value.pice,value.image_url,clothes.indexOf(value),"clothing",true,Math.random()); // instance of a product
   productList.push(product);
 });
-
-
-
-new ProductContainer("discounted_products",productList);//creating a container for product
 gadgets.forEach(value =>{
-  var product = new Product(value.name,value.discription,value.pice,value.image_url,cloths.indexOf(value),"gadgets",true,Math.random()); // instance of a product
+  var product = new Product(value.name,value.discription,value.pice,value.image_url,clothes.indexOf(value),"gadgets",true,Math.random()); // instance of a product
   productList.push(product);
-  document.getElementById("featured_items").append(product.create());
+  
+});
+personal.forEach(value =>{
+  var product = new Product(value.name,value.discription,value.pice,value.image_url,clothes.indexOf(value),"gadgets",true,Math.random()); // instance of a product
+  productList.push(product);
 });
 
-for(var i = 0 ;i < 10;i++){// adding produc card
-  var product = new Product("test"+i,"tes ni siya",i*100,"../image/gadget.png",i,"gadgets",true,Math.random()); // instance of a product
-  document.getElementById("popular_items").append(product.create());
-}
-document.getElementById("showcase").append(new SearchBar(productList));//creating a search bar
 
-productList.forEach(value =>{
-  value.onProduckClick = (v) =>{
+for(var i = 0 ; i< productList.length;i++){
+  productList[i].tag = p_tag[getRandomInt(0,2)]
+  //console.log(productList[i].tag);
+  switch(productList[i].tag){
+    case "featured":
+      featuredProductList.push(productList[i]);
+      productList[i].discount_value = getRandomInt(10,30)/100;
+      document.getElementById("featured_items").append(productList[i].create());
+      break;
+    case "discounted":
+      productList[i].discount_value = getRandomInt(50,60)/100;
+      discountedProductList.push(productList[i]);
+      break;
+    case "popular":
+      popularProductList.push(productList[i]);
+      break;
+  }
+  productList[i].onProductClick = (v) =>{
     var m = new ProductModal(v)
     document.getElementsByTagName('header')[0].append(m);
   }
-});
+}
+
+
+//console.log(productList);
+document.getElementById("showcase").append(new SearchBar(productList));//creating a search bar
+new ProductContainer("discounted_products",discountedProductList);//creating a container for product
+
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 
 

@@ -46,14 +46,18 @@ export class SearchBar{
                         break;
                     }
                 }
+                for(var i = 0 ; i<input_text.value.length ;i++){//this loop will check every letter of the input and compare it in every letter of the products name
+                    
+                    console.log(this.products[product_names.indexOf(value)].tag)
+                    if(this.products[product_names.indexOf(value)].tag.toUpperCase()[i]==input_text.value.toUpperCase()[i]){
+                        
+                        isSuggest = true;//if not equal the automatically that product is not what the user search for
+                        break;
+                    }
+                }
                 if(value.toUpperCase().includes(input_text.value.toUpperCase())){
                     isSuggest = true;
                 }
-                // words.forEach(x =>{
-                //     if(x.toUpperCase().includes(x)){
-                //         isSuggest = true;
-                //     }
-                // })
                 
                 //if the isSuggets is true and the input length is greater than zero
                 if(isSuggest&&input_text.value.length>0){//then init resultbutton
