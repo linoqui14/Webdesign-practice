@@ -1,35 +1,41 @@
-import {Product} from "./products.js";//importing product.js
+import {Product,ProductContainer} from "./products.js";//importing product.js
+import {SearchBar} from "./searchbar.js";
+import {ProductModal} from "./modal.js";
 
-//this must be a ul 
-//and set the ul id so that it can the products card can be added as a child
-var product_container = document.getElementById("home_product_container");
+import {cloths} from "../image/products/clothing/clothing.js"
+import {gadgets} from "../image/products/gadgets/gadgets.js"
+var featureProductList = [];
+var productList = []
+cloths.forEach(value =>{
+  //console.log(value);
+  var product = new Product(value.name,value.discription,value.pice,value.image_url,cloths.indexOf(value),"gadgets",true,Math.random()); // instance of a product
+  //console.log(product.product_name);
+  featureProductList.push(product);//adding this prodcut to the array
+  productList.push(product);
+});
 
 
-for(var i = 0 ;i < 20;i++){
-    var product = new Product("test"+i
-    ,"tes ni siya",i,
-    "../image/gadget.png",i,"gadgets",false); // instance of a product
-    var li = product.create();// this function will return a list item
-    product_container.appendChild(li);//put it in the ul
+
+new ProductContainer("discounted_products",productList);//creating a container for product
+gadgets.forEach(value =>{
+  var product = new Product(value.name,value.discription,value.pice,value.image_url,cloths.indexOf(value),"gadgets",true,Math.random()); // instance of a product
+  productList.push(product);
+  document.getElementById("featured_items").append(product.create());
+});
+
+for(var i = 0 ;i < 10;i++){// adding produc card
+  var product = new Product("test"+i,"tes ni siya",i*100,"../image/gadget.png",i,"gadgets",true,Math.random()); // instance of a product
+  document.getElementById("popular_items").append(product.create());
 }
+document.getElementById("showcase").append(new SearchBar(productList));//creating a search bar
 
-//slide 
-var slideIndex = 1;
-showDivs(slideIndex);
-
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
+productList.forEach(value =>{
+  value.onProduckClick = (v) =>{
+    var m = new ProductModal(v)
+    document.getElementsByTagName('header')[0].append(m);
   }
-  x[slideIndex-1].style.display = "block";  
-}
+});
+
+
 
 
