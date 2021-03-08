@@ -38,12 +38,16 @@ for(var i = 0 ; i< productList.length;i++){
       break;
     case "discounted":
       productList[i].discount_value = getRandomInt(50,60)/100;
+      // console.log(productList[i].price+" "+productList[i].discountedPrice);
       discountedProductList.push(productList[i]);
       break;
     case "popular":
+      productList[i].discount_value = getRandomInt(30,50)/100;
+      //console.log(productList[i].price+" "+productList[i].discountedPrice);
       popularProductList.push(productList[i]);
       break;
   }
+  
   productList[i].onProductClick = (v) =>{
     var m = new ProductModal(v)
     document.getElementsByTagName('header')[0].append(m);
@@ -51,7 +55,7 @@ for(var i = 0 ; i< productList.length;i++){
 }
 
 
-//console.log(productList);
+
 document.getElementById("showcase").append(new SearchBar(productList));//creating a search bar
 new ProductContainer("discounted_products",discountedProductList);//creating a container for product
 

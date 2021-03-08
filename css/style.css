@@ -258,6 +258,7 @@ header nav{
 }
 .product_container_noscroll{
     margin-left: 10%;
+    margin-right: 5%;
     overflow: auto;
     white-space: pre-line;
     min-height: 350px;

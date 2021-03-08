@@ -9,14 +9,13 @@
         this.isDiscounted = isDiscounted;
         this.discount_value = discount_value;
         this.onProductClick = function(){}
-        this.discountedPrice = 0
+        this.discountedPrice = this.price - (this.price*this.discount_value);
         this.tag = "";
         // this.discount_percentage = discount_percentage;
         // this.discounted_price = price - (price*discount_percentage);
     }
     //creating elements
     create(){
-        this.discountedPrice = this.price - (this.price*this.discount_value);
         var card = document.createElement("div");
         var container = document.createElement("div");
         var image = document.createElement("img");

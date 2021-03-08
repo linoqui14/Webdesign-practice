@@ -1,4 +1,4 @@
-import {Product} from "./products.js";
+import {ProductModal} from "./modal.js";
 
 //This class is the one who handle the search and suggestion
 //It requires the list of products
@@ -47,10 +47,8 @@ export class SearchBar{
                     }
                 }
                 for(var i = 0 ; i<input_text.value.length ;i++){//this loop will check every letter of the input and compare it in every letter of the products name
-                    
-                    console.log(this.products[product_names.indexOf(value)].tag)
-                    if(this.products[product_names.indexOf(value)].tag.toUpperCase()[i]==input_text.value.toUpperCase()[i]){
-                        
+                    // console.log(this.products[product_names.indexOf(value)].tag)
+                    if(this.products[product_names.indexOf(value)].category.toUpperCase()[i]==input_text.value.toUpperCase()[i]){
                         isSuggest = true;//if not equal the automatically that product is not what the user search for
                         break;
                     }
@@ -63,7 +61,8 @@ export class SearchBar{
                 if(isSuggest&&input_text.value.length>0){//then init resultbutton
                     var resultBtn = document.createElement("button");
                     resultBtn.onclick = (e)=>{//set on click when the user click the desired result
-                        console.log(product_names.indexOf(value));
+                        document.getElementsByTagName("header")[0].append(new ProductModal(products[product_names.indexOf(value)]))
+                        console.log(products[product_names.indexOf(value)]);
                     }
                     resultBtn.innerText = value.toLowerCase();//the result value will be the inner text of the button
                     resultBtn.className = "result_button";//assign a class 
@@ -82,14 +81,32 @@ export class SearchBar{
             
         });
         // always on top
+        var w_width = window.innerWidth;
+        window.addEventListener("resize",value =>{
+            w_width = window.innerWidth;
+            if(w_width<=1050){
+                console.log(w_width)
+                this.return_search_element.style.top = "70px";
+            }
+            else{
+                this.return_search_element.style.top = "30px";
+            }
+        });
         window.onscroll = ()=>{
             var scrollPos = window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
+            
             if(scrollPos < 300){
                 this.return_search_element.style.position = null;
                 this.return_search_element.style.top = null;
             }else if(scrollPos >= 300){
                 this.return_search_element.style.position = "fixed";
-                this.return_search_element.style.top = "30px";
+                if(w_width<=1050){
+                    this.return_search_element.style.top = "70px";
+                }
+                else{
+                    this.return_search_element.style.top = "30px";
+                }
+                
             }
             
         }
