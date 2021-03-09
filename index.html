@@ -4,58 +4,98 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baligya Online | Welcome</title>
+    <title>Bentahan Online</title>
     <link rel="stylesheet" href="./css/style.css">
     <meta name="description" content="Price is what you pay. Value is what you get.">
     <meta name="keywords" content="gadgets, affordable, new design, brand new, samsung,xiaomi">  
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <!-- <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="module" src="./js/index.js" defer></script> 
-
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <div id="branding">
-              <!-- <h1>Baligya Online</h1> -->
-              <img src="image/Logo.png" width="200px">
+    <div id="cart-btn" >      
+        <li class="fa fa-shopping-cart"></li>
+        <div id=cart-btn-text>0
+        </div>
+    </div>
+    <div id="home">
+        <header>
+            <div class="container">
+                <div id="branding">
+                  <!-- <h1>Baligya Online</h1> -->
+                  <img src="image/Logo.png" width="200px">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a id="to-product">Products</a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav>
-                <ul>
-					<li><a href="./page/product.html">Products</a></li>
-					<li><a href="">Contact</a></li>
+            <div class="category">
+                <ul >
+                    <button id="cat-gad"  class="cat-btn">Gadgets</button>
+                    <button id="clo-gad" class="cat-btn">Clothing</button>
+                    <button id="per-gad" class="cat-btn">Personal</button>
+                    <button id="home-gad" class="cat-btn">Home</button>
                 </ul>
-            </nav>
-        </div>
-    </header>
-    <section id="showcase">
-        <div class="container">
-            <h1>
-                Price is what you pay. Value is what you get.
-            </h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        </div>
-
-    </section>
-    <section id="items">
-        <h3 style="text-align: center;"> On Sale!</h3>
-        <div id="discounted_products" class="product_container">
+            </div>
+            
+        </header>
+        <section id="showcase">
+            <div class="container">
+                <h1>
+                    Price is what you pay. Value is what you get.
+                </h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+    
+        </section>
+        <section id="items">
+            <h3 style="text-align: center;"> On Sale!</h3>
+            <div id="discounted_products" class="product_container">
+            
+            </div>
+        </section>
+        <section id="featured">
+            <h3 style="margin-left: 10%;">Featured Products</h3>
+            <div id="featured_items" class="product_container_noscroll">
+            
+            </div>
+        </section>
+        <section id="popular">
+            <h3 style="margin-left: 10%;">Popular</h3>
+            <div id="popular_items" class="product_container_noscroll">
+            </div>
+        </section>
+    </div>
+    <div id="products">
+        <header>
+            <div class="container">
+                <div id="branding">
+                  <img id="logo" src="image/Logo.png" width="200px">
+                </div>
+                
+                <div id="product-search">
+                    <div class="category">
+                        <ul >
+                            <button id="cat-gad"  class="cat-btn">Gadgets</button>
+                            <button id="clo-gad" class="cat-btn">Clothing</button>
+                            <button id="per-gad" class="cat-btn">Personal</button>
+                            <button id="home-gad" class="cat-btn"> Home</button>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section id="showcase1">
+            <div id="searched">Text</div>
+            <div id="all-products" class="product_container_noscroll">
+               
+            </div>
+        </section>
         
-        </div>
-    </section>
-    <section id="featured">
-        <h3 style="margin-left: 10%;">Featured Products</h3>
-        <div id="featured_items" class="product_container_noscroll">
-        
-        </div>
-    </section>
-    <section id="popular">
-        <h3 style="margin-left: 10%;">Popular</h3>
-        <div id="popular_items" class="product_container_noscroll">
-        </div>
-    </section>
+    </div>
     <footer>
         <p>Baliya online, Copyright &copy</p>
     </footer>
