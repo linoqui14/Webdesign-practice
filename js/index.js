@@ -29,7 +29,7 @@ personal.forEach(value =>{
   productList.push(product);
 });
 home.forEach(value =>{
-  var product = new Product(value.name,value.discription,value.pice,value.image_url,clothes.indexOf(value),"home",true,Math.random()); // instance of a product
+  var product = new Product(value.name,value.discription,value.pice,value.image_url,clothes.indexOf(value),"living",true,Math.random()); // instance of a product
   productList.push(product);
 });
 //end
@@ -121,6 +121,7 @@ document.getElementById("to-product").onclick = ()=>{
   productList.forEach(x =>{
     document.getElementById("all-products").append(x.create());
   })
+  document.getElementById("searched").innerText = "All Products"
 }
 //end
 //show cart
