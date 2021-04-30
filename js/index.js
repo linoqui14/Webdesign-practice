@@ -1,10 +1,4 @@
-import {Product,ProductContainer} from "./products.js";//importing product.js
-import {SearchBar} from "./searchbar.js";
-import {ProductModal,CartModal} from "./modal.js";
-import {clothes} from "../image/products/clothing/clothing.js"
-import {gadgets} from "../image/products/gadgets/gadgets.js"
-import {personal} from "../image/products/personal/personal.js"
-import {home} from "../image/products/home/home.js"
+
 var p_tag = ["featured","discounted","popular"]
 
 var onCartProdcuts = [];//array of prodcut and quantity
@@ -77,15 +71,13 @@ for(var i = 0 ; i< productList.length;i++){
   document.getElementById("all-products").append(productList[i].create());
 }
 //init search bar
-var s1 = new SearchBar(productList,true);
-var s2 = new SearchBar(productList,false);
-document.getElementById("showcase").append(s1.return_search_element);//creating a search bar
-document.getElementById("product-search").append(s2.return_search_element);//creating a search bar
+var s = new SearchBar(productList,true,"product-search");
+// document.getElementById("showcase").append(s.return_search_element);//creating a search bar
+document.getElementById("product-search").append(s.return_search_element);//creating a search bar
 new ProductContainer("discounted_products",discountedProductList);//creating a container for product// this is where the slide show somewhat a like
 //end
 //adding fucntion on search bar
-s1.onSubmit =  (value,text)=>{
-  current_page = 2;
+s.onSubmit =  (value,text)=>{
   document.getElementById("home").style.display = "none"
   document.getElementById("products").style.display = ""
   document.getElementById("all-products").innerHTML = "";//reset when click
@@ -93,18 +85,7 @@ s1.onSubmit =  (value,text)=>{
     document.getElementById("all-products").append(x.create());
   })
   document.getElementById("searched").innerText = "Results... "+text.value
-  s1.result_container.innerHTML = ""
-}
-s2.onSubmit =  (value,text)=>{
-  document.getElementById("all-products").innerHTML = "";//reset when click
-  current_page = 2;
-  document.getElementById("home").style.display = "none"
-  document.getElementById("products").style.display = ""
-  value.forEach(x =>{
-    document.getElementById("all-products").append(x.create());
-  })
-  document.getElementById("searched").innerText = "Results... "+text.value
-  s2.result_container.innerHTML = ""
+  s.result_container.innerHTML = ""
 }
 //end
 
@@ -121,7 +102,6 @@ document.getElementById("to-product").onclick = ()=>{
   productList.forEach(x =>{
     document.getElementById("all-products").append(x.create());
   })
-  document.getElementById("searched").innerText = "All Products"
 }
 //end
 //show cart
@@ -143,7 +123,9 @@ Array.prototype.forEach.call(catbtn, function(btn) {//adding onlcik on category 
     document.getElementById("products").style.display = ""
       productList.forEach( value =>{
         console.log(value.category.toUpperCase() + " "+btn.innerText.toUpperCase())//comare category
+
         if(value.category.toUpperCase()==btn.innerText.toUpperCase()){
+
           document.getElementById("all-products").append(value.create());//create card
           document.getElementById("searched").innerText = btn.innerText
         }

@@ -1,4 +1,4 @@
- export class Product{
+class Product{
     constructor(product_name,description,price,image_url,product_id,category,isDiscounted,discount_value){
         this.product_name = product_name;
         this.description=description;
@@ -16,13 +16,13 @@
     }
     //creating elements
     create(){
-        var card = document.createElement("div");
-        var container = document.createElement("div");
-        var image = document.createElement("img");
-        var product_name_h4 = document.createElement("h4");
-        var price_text = document.createElement("h3");
-        var discount = document.createElement("h6");
-        var product_description_p = document.createElement("div");
+        let card = document.createElement("div");
+        let container = document.createElement("div");
+        let image = document.createElement("img");
+        let product_name_h4 = document.createElement("h4");
+        let price_text = document.createElement("h3");
+        let discount = document.createElement("h6");
+        let product_description_p = document.createElement("div");
         //set attributesss
         container.className = "p_container";
         container.style.width = "200px";
@@ -41,8 +41,12 @@
         product_description_p.style.whiteSpace = "nowrap"
         card.className = "card";
         card.style.textAlign = "justify"
-        image.src = this.image_url;
-        image.alt = "../image/loading_image.png";
+        var newImg = new Image;
+        newImg.onload = function() {
+            image.src = this.src
+        }
+        newImg.src = this.image_url;
+        image.alt = "../image.loading_image.png";
         image.style.width = "250px"
         image.style.height = "330px"
         image.style.objectFit = "cover"
@@ -57,14 +61,14 @@
         price_text.style.marginBlockEnd = 0;
         price_text.style.marginTop = "0px"
         price_text.style.paddingTop = "0";
-        //adding elements
+        
         product_name_h4.innerText = this.product_name;
         product_name_h4.style.textAlign = "justify"
         product_name_h4.height = "50px"
         product_name_h4.style.textOverflow = "ellipsis";
         product_name_h4.style.overflow = "hidden";
         product_name_h4.style.whiteSpace = "nowrap"
-
+        //adding elements
         container.append(product_name_h4);
         container.append(product_description_p);
         container.append(price_text);
@@ -94,21 +98,21 @@
 
 }
 
-export class ProductContainer{
+class ProductContainer{
     constructor(elementID,products){
         this.products=products;
         this.elementID = elementID;
-        var product_container = document.getElementById(this.elementID);//get the container where you want to put the cards
-        var card = product_container.getElementsByClassName("card");
+        let product_container = document.getElementById(this.elementID);//get the container where you want to put the cards
+        let card = product_container.getElementsByClassName("card");
 
-        var speed = 1000/60;//the speed of the scroll which is 60 frames/s
-        var isScroll = true;//use to indicate if autoScroll can scroll or not
-        var isDown = false;//use to indicate if the mouse is pressing the product container
-        var startX;//use for scrolling using mouse
-        var scrollLeft;//this will store the value of the current scrollValue when mousedown
-        var productList = [];//list of product objects
-        var forward = true;//indicator if the auto scroll is scrolling forward or else
-        var lastScroll = 0;//value for the last scroll before current scroll value
+        let speed = 1000/60;//the speed of the scroll which is 60 frames/s
+        let isScroll = true;//use to indicate if autoScroll can scroll or not
+        let isDown = false;//use to indicate if the mouse is pressing the product container
+        let startX;//use for scrolling using mouse
+        let scrollLeft;//this will store the value of the current scrollValue when mousedown
+        let productList = [];//list of product objects
+        let forward = true;//indicator if the auto scroll is scrolling forward or else
+        let lastScroll = 0;//value for the last scroll before current scroll value
         products.forEach((value) =>{// adding produc card
             productList.push(value);//adding this prodcut to the array
             product_container.append(value.create());//then adding to the element

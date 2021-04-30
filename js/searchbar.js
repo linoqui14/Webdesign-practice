@@ -1,24 +1,25 @@
-import {ProductModal} from "./modal.js";
+
 
 //This class is the one who handle the search and suggestion
 //It requires the list of products
-export class SearchBar{
-    constructor(products,isFloat){
+ class SearchBar{
+    constructor(products,isFloat,parent){
+        this.parent = parent;
         this.isFloat = isFloat;
         this.return_search_element = document.createElement('div');
         this.products = products;
         this.onSubmit = ()=>{
 
         }
-        var product_names = [];//this array will have all the name of the product
-        var searched_prodcuts = []
+        let product_names = [];//this array will have all the name of the product
+        let searched_prodcuts = []
         //creating the searchbar
         this.input_text = document.createElement('input');
         this.input_text.type = "submut"
-        var submit = document.createElement('button');
+        let submit = document.createElement('button');
         this.searchbar_container = document.createElement('div');
         this.result_container = document.createElement('div');
-        var searchedWord = ""
+        let searchedWord = ""
         //init element
         submit.className = "fa fa-search search-submit-button";
         submit.type = "submit";
@@ -51,21 +52,23 @@ export class SearchBar{
         if(this.input_text.value.length<=0){//check if the input is empty
             this.result_container.style.backgroundColor = "rgba(0,0,0,0)"//true then set visible 0
         }
+        
         //this part is where simple search algo
         this.input_text.addEventListener("input",(e)=>{//add input listener to the this.input_text
+            searched_prodcuts = []
             searchedWord = this.input_text;
-            var individual_result_container;//creating the container for individual result
+            let individual_result_container;//creating the container for individual result
             this.result_container.innerHTML = "";//remove all children in the result_container
             product_names.forEach(value =>{//loop to all product names
-                // var words = this.input_text.value.toUpperCase().split(" ");
-                var isSuggest = true;//let it be true
-                for(var i = 0 ; i<this.input_text.value.length ;i++){//this loop will check every letter of the input and compare it in every letter of the products name
+                // let words = this.input_text.value.toUpperCase().split(" ");
+                let isSuggest = true;//let it be true
+                for(let i = 0 ; i<this.input_text.value.length ;i++){//this loop will check every letter of the input and compare it in every letter of the products name
                     if(value.toUpperCase()[i]!=this.input_text.value.toUpperCase()[i]){
                         isSuggest = false;//if not equal the automatically that product is not what the user search for
                         break;
                     }
                 }
-                for(var i = 0 ; i<this.input_text.value.length ;i++){//this loop will check every letter of the input and compare it in every letter of the products name
+                for(let i = 0 ; i<this.input_text.value.length ;i++){//this loop will check every letter of the input and compare it in every letter of the products name
                     // console.log(this.products[product_names.indexOf(value)].tag)
                     if(this.products[product_names.indexOf(value)].category.toUpperCase()[i]==this.input_text.value.toUpperCase()[i]){
                         isSuggest = true;//if not equal the automatically that product is not what the user search for
@@ -79,9 +82,17 @@ export class SearchBar{
                 //if the isSuggets is true and the input length is greater than zero
                 if(isSuggest&&this.input_text.value.length>0){//then init resultbutton
                     
-                    var resultBtn = document.createElement("button");
+                    let resultBtn = document.createElement("button");
                     resultBtn.onclick = (e)=>{//set on click when the user click the desired result
-                        document.getElementsByTagName("header")[0].append(new ProductModal(products[product_names.indexOf(value)]).modal_container)
+                        let prodModal = new ProductModal(products[product_names.indexOf(value)]);
+                        prodModal.onAddtocart = (q,p)=>{
+                            totalQuantity+=q;
+                            onCartProdcuts.push({q,p});
+                            prodModal.modal_container.style.display = "none";
+                            document.getElementById("cart-btn-text").textContent = totalQuantity;
+                            document.getElementsByClassName("search_content")[0].style.display = "block"
+                        }
+                        document.getElementsByTagName("header")[0].append(prodModal.modal_container)
                         console.log(products[product_names.indexOf(value)]);
                     }
                     searched_prodcuts.push(products[product_names.indexOf(value)]);
@@ -102,42 +113,35 @@ export class SearchBar{
             
         });
         // always on top
-        var w_width = window.innerWidth;
+        let shrink = true;
+        let shrinkValue = 0;
+        let p = document.getElementById("product-search");
+        let style = p.currentStyle || window.getComputedStyle(p);
+        let originalMarginTop =  style.marginTop;
+        var marginTop = parseInt(style.marginTop.toString().replace('px',''))
         if(this.isFloat){
             window.addEventListener("resize",value =>{
-                w_width = window.innerWidth;
-                if(w_width<=1050&&w_width>950){
-                    this.return_search_element.style.top = "70px";
+                if(shrinkValue<window.innerWidth){//expand
+                    shrinkValue = window.innerWidth;
+                    shrink = false;
                 }
-                if(w_width<=950){
-                    this.return_search_element.style.top = "115px";
+                else{//shrink
+                    shrinkValue = window.innerWidth;
+                    shrink = true;
                 }
-                else{
-                    this.return_search_element.style.top = "30px";
+
+                if(window.innerWidth<1030&&shrink&&marginTop<100){
+                    marginTop+=3
+                    document.getElementById("product-search").style.marginTop = marginTop.toString()+"px"; 
+                }
+                else if(window.innerWidth<1155&&!shrink){
+                    marginTop -=3
+                    document.getElementById("product-search").style.marginTop = marginTop.toString()+"px"; 
+                }
+                else if (window.innerWidth>1155){
+                    document.getElementById("product-search").style.marginTop = originalMarginTop; 
                 }
             });
-            window.onscroll = ()=>{
-                var scrollPos = window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
-                
-                if(scrollPos < 300){
-                    this.return_search_element.style.position = null;
-                    this.return_search_element.style.top = null;
-                }else if(scrollPos >= 300){
-                    this.return_search_element.style.position = "fixed";
-                    if(w_width<=1050&&w_width>950){
-                        this.return_search_element.style.top = "70px";
-                    }
-                    if(w_width<=950){
-                        
-                        this.return_search_element.style.top = "115px";
-                    }
-                    else{
-                        this.return_search_element.style.top = "30px";
-                    }
-                    
-                }
-                
-            }
         }
         
 

@@ -1,31 +1,31 @@
 
 @font-face {
     font-family: Questrial;
-    src: url("/fonts/Questrial-Regular.ttf");
+    src: url("../fonts/Questrial-Regular.ttf");
   }
 @font-face {
     font-family: Quicksand-Regular;
-    src: url("/fonts/Quicksand-Regular.ttf");
+    src: url("../fonts/Quicksand-Regular.ttf");
   }
 @font-face {
     font-family: Quicksand-Medium;
-    src: url("/fonts/Quicksand-Medium.ttf");
+    src: url("../fonts/Quicksand-Medium.ttf");
   }
 @font-face {
     font-family: Quicksand-Light;
-    src: url("/fonts/Quicksand-Light.ttf");
+    src: url("../fonts/Quicksand-Light.ttf");
   }
 @font-face {
     font-family: Quicksand-SemiBold;
-    src: url("/fonts/Quicksand-SemiBold.ttf");
+    src: url("../fonts/Quicksand-SemiBold.ttf");
   }
   @font-face {
     font-family: Quicksand-Bold;
-    src: url("/fonts/Quicksand-Bold.ttf");
+    src: url("../fonts/Quicksand-Bold.ttf");
   }
 @font-face {
     font-family: BebasNeue;
-    src: url("/fonts/BebasNeue-Regular.ttf");
+    src: url("../fonts/BebasNeue-Regular.ttf");
   }
 body{
     font: 15px/1 Arial, Helvetica, sans-serif;
@@ -37,8 +37,7 @@ body{
 
     margin: auto;
     /* background-color: yellow; */
-    width: 400px;
-    left: 25%;
+    min-width: fit-content;
 }
 .category ul{
     text-align: center;
@@ -129,7 +128,7 @@ header{
     padding-top: 20px;
     position: fixed;
     background-color:white;
-    min-height: 70px;
+    min-height: 100px;
     width: 100%;
     /* border-bottom: #e65100 1px solid; */
     color: rgba(0, 0, 0, 0.8);
@@ -178,10 +177,19 @@ header nav{
     font-size: 20px;
 }
 
+#product-search{
+    margin-top:20px;
+    left: 25%;
+    width: 50%;;
+    /* max-width: 50%; */
+    z-index: 2;
+    position: fixed;
+    
+}
+
 .searchbar{
     display: grid;
-    margin-left: 30%;
-    margin-right: 30%;
+    
     background-color: rgba(236, 236, 236, 1);
     min-width:20%;
     border-radius: 50px;
@@ -222,8 +230,6 @@ header nav{
 .result{
     /* margin-top: 20px; */
     background-color: white;
-    margin-left: 33%;
-    margin-right: 33%;
     color: black;
     overflow-y: auto;
     overflow-x: hidden;
@@ -347,8 +353,7 @@ footer{
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 150px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */

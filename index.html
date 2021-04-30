@@ -8,40 +8,58 @@
     <link rel="stylesheet" href="./css/style.css">
     <meta name="description" content="Price is what you pay. Value is what you get.">
     <meta name="keywords" content="gadgets, affordable, new design, brand new, samsung,xiaomi">  
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap" rel="stylesheet"> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="module" src="./js/index.js" defer></script> 
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap" rel="stylesheet"> -->
+
+    <!-- <script type='text/javascript' src="../Webdesign-practice/image/products/clothing/clothing.js " defer></script>   -->
+    <script type='text/javascript' src="../Webdesign-practice/image/products/gadgets/gadgets.js "defer></script>  
+    <script type='text/javascript' src="../Webdesign-practice/image/products/personal/personal.js "defer></script> 
+    <script type='text/javascript' src="../Webdesign-practice/image/products/home/home.js "defer ></script>  
+    <script type='text/javascript' src="../Webdesign-practice/image/products/clothing/clothing.js "defer ></script>  
+
+    <script type='text/javascript' src="../Webdesign-practice/js/modal.js" defer></script> 
+    <script type='text/javascript' src="../Webdesign-practice/js/searchbar.js" defer></script> 
+    <script type='text/javascript' src="../Webdesign-practice/js/products.js" ></script>
+    <script type='text/javascript' src="../Webdesign-practice/js/index.js" defer></script>  
 </head>
 
+
+<script type='text/javascript' src="../Webdesign-practice/js/index.js" ></script> 
 <body>
     <div id="cart-btn" >      
         <li class="fa fa-shopping-cart"></li>
         <div id=cart-btn-text>0
         </div>
     </div>
-    <div id="home">
-        <header>
-            <div class="container">
-                <div id="branding">
-                  <!-- <h1>Baligya Online</h1> -->
-                  <img src="image/Logo.png" width="200px">
-                </div>
-                <nav>
-                    <ul>
-                        <li><a id="to-product">Products</a></li>
-                    </ul>
-                </nav>
+    <div id="product-search">
+        <div class="category">
+            <ul >
+                <button id="cat-gad"  class="cat-btn">Gadgets</button>
+                <button id="clo-gad" class="cat-btn">Clothing</button>
+                <button id="per-gad" class="cat-btn">Personal</button>
+                <button id="home-gad" class="cat-btn">Living</button>
+            </ul>
+        </div>
+    </div>
+    <header>
+        <div class="container">
+            <div id="branding">
+              <img id="logo" src="image/Logo.png" width="250px">
             </div>
-            <div class="category">
-                <ul >
-                    <button id="cat-gad"  class="cat-btn">Gadgets</button>
-                    <button id="clo-gad" class="cat-btn">Clothing</button>
-                    <button id="per-gad" class="cat-btn">Personal</button>
-                    <button id="home-gad" class="cat-btn">Living</button>
+            <nav>
+                <ul>
+                    <li><a id="to-product">Products</a></li>
                 </ul>
+            </nav>
+            <div >
+               
             </div>
-            
-        </header>
+        </div>
+    </header>
+
+    <div id="home">
+    
         <section id="showcase">
             <div class="container">
                 <h1>
@@ -70,24 +88,7 @@
         </section>
     </div>
     <div id="products">
-        <header>
-            <div class="container">
-                <div id="branding">
-                  <img id="logo" src="image/Logo.png" width="200px">
-                </div>
-                
-                <div id="product-search">
-                    <div class="category">
-                        <ul >
-                            <button id="cat-gad"  class="cat-btn">Gadgets</button>
-                            <button id="clo-gad" class="cat-btn">Clothing</button>
-                            <button id="per-gad" class="cat-btn">Personal</button>
-                            <button id="home-gad" class="cat-btn">Living</button>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </header>
+       
         <section id="showcase1">
             <div id="searched">Text</div>
             <div id="all-products" class="product_container_noscroll">
